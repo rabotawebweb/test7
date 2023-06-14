@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Авторы</h1>
+
+	
+	{% for item in authors %}
+		<div>
+			{{ item.name }} {{ item.surname }} <a href="/index.php/author/{{ item.id }}/edit">редактировать автора</a>
+		</div>
+		<div>
+			{% for item2 in item.books %}	
+				<div>{{ item2.name }} - {{ item2.year }}</div>
+			{% endfor %} 			
+		</div>
+	{% endfor %} 
+	
+	<a href="/index.php/author/new">добавить автора</a>
+	
+</div>
+{% endblock %}

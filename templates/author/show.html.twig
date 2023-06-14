@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Author{% endblock %}
+
+{% block body %}
+    <h1>Author</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ author.id }}</td>
+            </tr>
+            <tr>
+                <th>Имя</th>
+                <td>{{ author.name }}</td>
+            </tr>
+            <tr>
+                <th>Фамилия</th>
+                <td>{{ author.surname }}</td>
+            </tr>
+        </tbody>
+    </table>
+	
+	<div>Список книг:</div>
+		
+	{% for item2 in author.books %}	
+		<div>{{ item2.name }} - {{ item2.year }} <a href="/index.php/book/{{ item2.id }}/edit">отредактировать</a></div>
+	{% endfor %}
+	
+	<div>-</div>
+	<div><a href="/index.php/book/new">добавить книгу</a></div>
+	<div>-</div>
+	
+    <a href="{{ path('app_author_index') }}">back to list</a>
+
+    <a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
+
+    {{ include('author/_delete_form.html.twig') }}
+{% endblock %}
